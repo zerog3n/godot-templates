@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vsevvhs8nmvu"
+path="res://.godot/imported/Music_Loop_7_TopLine.wav-e24bb9a563a846b542d847f1e140d13d.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 7/Music_Loop_7_TopLine.wav"
+dest_files=["res://.godot/imported/Music_Loop_7_TopLine.wav-e24bb9a563a846b542d847f1e140d13d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

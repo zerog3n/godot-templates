@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://boe4ardw2hco6"
+path="res://.godot/imported/Music_Loop_4_Arp.wav-c469c98d7e3f33047895a2d003072f05.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 4/Music_Loop_4_Arp.wav"
+dest_files=["res://.godot/imported/Music_Loop_4_Arp.wav-c469c98d7e3f33047895a2d003072f05.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

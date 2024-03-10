@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b2nna3y67ld3h"
+path="res://.godot/imported/Music_Loop_6_Melody.wav-b5db2539c42aa023a6450428d6ddaffc.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 6/Music_Loop_6_Melody.wav"
+dest_files=["res://.godot/imported/Music_Loop_6_Melody.wav-b5db2539c42aa023a6450428d6ddaffc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

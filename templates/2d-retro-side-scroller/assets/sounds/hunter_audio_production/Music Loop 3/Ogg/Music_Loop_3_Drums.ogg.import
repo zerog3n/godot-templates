@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cakk58k2evgry"
+path="res://.godot/imported/Music_Loop_3_Drums.ogg-ae82dd7188027b600101232f01db429e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 3/Ogg/Music_Loop_3_Drums.ogg"
+dest_files=["res://.godot/imported/Music_Loop_3_Drums.ogg-ae82dd7188027b600101232f01db429e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

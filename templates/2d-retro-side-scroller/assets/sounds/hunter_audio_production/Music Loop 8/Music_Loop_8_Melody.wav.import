@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c72rns0sdiooo"
+path="res://.godot/imported/Music_Loop_8_Melody.wav-e098054e846794944204cf5d5131dfb2.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 8/Music_Loop_8_Melody.wav"
+dest_files=["res://.godot/imported/Music_Loop_8_Melody.wav-e098054e846794944204cf5d5131dfb2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

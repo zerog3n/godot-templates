@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bsnwun8jotrjf"
+path="res://.godot/imported/Music_Loop_5_Melody2.ogg-f879c8de58368d90320c435400d83afe.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 5/Ogg/Music_Loop_5_Melody2.ogg"
+dest_files=["res://.godot/imported/Music_Loop_5_Melody2.ogg-f879c8de58368d90320c435400d83afe.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

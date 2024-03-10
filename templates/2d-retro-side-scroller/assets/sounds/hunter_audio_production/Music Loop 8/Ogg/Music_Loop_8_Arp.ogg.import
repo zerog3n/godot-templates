@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byb0dqsbfllep"
+path="res://.godot/imported/Music_Loop_8_Arp.ogg-b21020062544cb43d0168c0da5146ac3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 8/Ogg/Music_Loop_8_Arp.ogg"
+dest_files=["res://.godot/imported/Music_Loop_8_Arp.ogg-b21020062544cb43d0168c0da5146ac3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

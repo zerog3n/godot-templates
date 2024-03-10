@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci7nsluko58ui"]
+
+[ext_resource type="Script" path="res://player/CharacterBody2D.gd" id="1_b7dm8"]
+[ext_resource type="Texture2D" uid="uid://dv7jdqmp4c02e" path="res://assets/characters.png" id="1_wplye"]
+[ext_resource type="AudioStream" uid="uid://wqb8hx0m2kiy" path="res://assets/sounds/hunter_audio_production/SFX/Actions/Spring1.wav" id="3_vqnct"]
+[ext_resource type="AudioStream" uid="uid://3o7nh0lfekyp" path="res://assets/sounds/hunter_audio_production/SFX/Actions/Touch03.wav" id="4_pydnq"]
+[ext_resource type="AudioStream" uid="uid://dtxwakv6gd25h" path="res://assets/sounds/three_red_hearts_prepare_to_dev/Three Red Hearts - Go.ogg" id="5_do481"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuel5"]
+radius = 5.5
+height = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qcvo"]
+size = Vector2(8.5, 3)
+
+[node name="Player" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_b7dm8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_wplye")
+hframes = 9
+frame = 8
+region_enabled = true
+region_rect = Rect2(128, 288, 144, 30)
+
+[node name="CollisionHead" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, 3.5)
+shape = SubResource("CapsuleShape2D_iuel5")
+
+[node name="CollisionBody" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, 9)
+shape = SubResource("CapsuleShape2D_iuel5")
+
+[node name="CollisionFeet" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.25, 14.5)
+shape = SubResource("RectangleShape2D_6qcvo")
+
+[node name="RayCast1" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(-4.5, 2)
+target_position = Vector2(0, -11)
+
+[node name="RayCast2" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(5.5, 2)
+target_position = Vector2(0, -11)
+
+[node name="Sounds" type="Node2D" parent="CharacterBody2D"]
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="CharacterBody2D/Sounds"]
+stream = ExtResource("3_vqnct")
+volume_db = -12.0
+
+[node name="Land" type="AudioStreamPlayer2D" parent="CharacterBody2D/Sounds"]
+stream = ExtResource("4_pydnq")
+volume_db = -4.0
+pitch_scale = 0.4
+
+[node name="Music" type="Node2D" parent="CharacterBody2D"]
+
+[node name="Loop" type="AudioStreamPlayer2D" parent="CharacterBody2D/Music"]
+stream = ExtResource("5_do481")
+volume_db = -28.0
+autoplay = true

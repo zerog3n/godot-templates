@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://beesa7jg60h3"
+path="res://.godot/imported/Music_Loop_3_Drums.wav-7c1e6bba428814256b8938a6ca8f6da6.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 3/Music_Loop_3_Drums.wav"
+dest_files=["res://.godot/imported/Music_Loop_3_Drums.wav-7c1e6bba428814256b8938a6ca8f6da6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

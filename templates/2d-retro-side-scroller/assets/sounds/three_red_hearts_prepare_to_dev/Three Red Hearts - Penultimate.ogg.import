@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://iuda6qvilmvq"
+path="res://.godot/imported/Three Red Hearts - Penultimate.ogg-f509c6ae8a3c9546e0b7c8d82bcfd4c4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/three_red_hearts_prepare_to_dev/Three Red Hearts - Penultimate.ogg"
+dest_files=["res://.godot/imported/Three Red Hearts - Penultimate.ogg-f509c6ae8a3c9546e0b7c8d82bcfd4c4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

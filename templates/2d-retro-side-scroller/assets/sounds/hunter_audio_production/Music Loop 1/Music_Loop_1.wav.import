@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://csfwgn3fabkol"
+path="res://.godot/imported/Music_Loop_1.wav-cebda7de86bf96af8c4ea100811a211a.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 1/Music_Loop_1.wav"
+dest_files=["res://.godot/imported/Music_Loop_1.wav-cebda7de86bf96af8c4ea100811a211a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

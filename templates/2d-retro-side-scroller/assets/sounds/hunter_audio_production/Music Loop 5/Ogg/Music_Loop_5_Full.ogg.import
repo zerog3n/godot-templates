@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vlyexq5qca2q"
+path="res://.godot/imported/Music_Loop_5_Full.ogg-fdc0da78a958123c66b9b3d6d5b05a9c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/hunter_audio_production/Music Loop 5/Ogg/Music_Loop_5_Full.ogg"
+dest_files=["res://.godot/imported/Music_Loop_5_Full.ogg-fdc0da78a958123c66b9b3d6d5b05a9c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

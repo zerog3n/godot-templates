@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="FPS Template"
+config/name="3D FPS Shooter"
 run/main_scene="res://Example World/Objects/World/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 run/delta_smoothing=false
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="res://Title.png"
+config/icon="res://icon.png"
 boot_splash/minimum_display_time=1000
 
 [display]
