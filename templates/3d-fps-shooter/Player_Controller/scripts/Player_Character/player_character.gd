@@ -134,12 +134,10 @@ func _input(event):
 			#Sprint_Timer.start(Sprint_Time_Remaining)
 			Sprint_Toggle = true
 			Speed_Modifier = NORMAL_SPEED + EXTRA_SPEED
-			print("Run: ", Speed_Modifier)
 
 	if Input.is_action_just_pressed("walk") and !Crouched:
 		Sprint_Toggle = false
 		Speed_Modifier = NORMAL_SPEED
-		print("Walk: ", Speed_Modifier)
 
 var screen_shake_inputs: int = 0
 var screen_shake_time: int = 0

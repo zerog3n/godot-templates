@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dniyrkkdwf3cb"]
+[gd_scene load_steps=18 format=3 uid="uid://dniyrkkdwf3cb"]
 
+[ext_resource type="Script" path="res://Library/Util/World.gd" id="1_q53en"]
 [ext_resource type="PackedScene" uid="uid://bwc28g513sfim" path="res://Example World/Objects/World/box_1.tscn" id="2_a2qm0"]
 [ext_resource type="PackedScene" uid="uid://bo6viygofawpl" path="res://Example World/Objects/World/target.tscn" id="3_11x65"]
 [ext_resource type="PackedScene" uid="uid://gtthejj2wmyj" path="res://Player_Controller/Spawnable_Objects/Weapons/blaster_n.tscn" id="4_jtbxf"]
@@ -27,6 +28,7 @@ albedo_texture = ExtResource("12_7osse")
 uv1_triplanar = true
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_q53en")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("7_tfq4t")

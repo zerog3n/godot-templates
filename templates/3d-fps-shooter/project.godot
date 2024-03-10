@@ -13,7 +13,16 @@ config_version=5
 config/name="FPS Template"
 run/main_scene="res://Example World/Objects/World/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=60
+run/delta_smoothing=false
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://Title.png"
+boot_splash/minimum_display_time=1000
+
+[display]
+
+window/size/resizable=false
 
 [filesystem]
 
@@ -125,3 +134,12 @@ walk={
 [physics]
 
 3d/default_gravity=12.0
+
+[rendering]
+
+renderer/rendering_method.mobile="forward_plus"
+renderer/rendering_method.web="forward_plus"
+environment/defaults/default_clear_color=Color(0.745098, 0, 0.54902, 1)
+anti_aliasing/quality/msaa_2d=2
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/use_debanding=true
