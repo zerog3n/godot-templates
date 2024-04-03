@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://biri1gf1ccp7w"]
+
+[ext_resource type="Script" path="res://controller.gd" id="1_u4yeg"]
+[ext_resource type="Script" path="res://select_box.gd" id="2_j5yi7"]
+
+[node name="Controller" type="Node3D"]
+script = ExtResource("1_u4yeg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+keep_aspect = 0
+fov = 70.0
+
+[node name="SelectBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 3
+script = ExtResource("2_j5yi7")

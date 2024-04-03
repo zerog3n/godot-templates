@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxuwx4vyfe642"]
+
+[ext_resource type="Script" path="res://mouse_action.gd" id="1_2dylx"]
+
+[node name="MouseAction" type="Node3D"]
+script = ExtResource("1_2dylx")

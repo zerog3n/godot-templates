@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr0rhdkl21r4i"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_xqkf3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4uql"]
+albedo_color = Color(1, 0.356863, 0.878431, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_12d5h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5xad"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fplc3"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+albedo_color = Color(0, 1, 0, 0.345098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wuw3g"]
+material = SubResource("StandardMaterial3D_fplc3")
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18464, 0)
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_xqkf3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_n4uql")
+mesh = SubResource("CapsuleMesh_12d5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_k5xad")
+
+[node name="Selection" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.04, 0, 0, 0, 0.0431113, 0, 0, 0, 1.92, 0, -0.960615, 0)
+visible = false
+layers = 2
+mesh = SubResource("CylinderMesh_wuw3g")

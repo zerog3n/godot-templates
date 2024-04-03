@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://7yltwdikdsl4"]
+
+[ext_resource type="Script" path="res://unit.gd" id="1_47ibl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_12d5h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5xad"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdwsq"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+albedo_color = Color(0, 1, 0, 0.345098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lyunr"]
+material = SubResource("StandardMaterial3D_pdwsq")
+
+[node name="Unit" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18464, 0)
+collision_layer = 19
+collision_mask = 19
+script = ExtResource("1_47ibl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_12d5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_k5xad")
+
+[node name="Selection" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.04, 0, 0, 0, 0.0431113, 0, 0, 0, 1.92, 0, -0.960615, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_lyunr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
