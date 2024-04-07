@@ -7,11 +7,6 @@
 [node name="Controller" type="Node3D"]
 script = ExtResource("1_u4yeg")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
-keep_aspect = 0
-fov = 70.0
-
 [node name="SelectBox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -19,14 +14,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.986167)
 mouse_default_cursor_shape = 3
 script = ExtResource("2_j5yi7")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
@@ -34,3 +32,9 @@ offset_bottom = 40.0
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_8tf1q")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+keep_aspect = 0
+current = true
+fov = 70.0

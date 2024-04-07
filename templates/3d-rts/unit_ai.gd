@@ -6,9 +6,9 @@ const debug_path = false
 
 # object instances
 @onready var world = get_node("/root/World")
+@onready var body = get_node('../Body')
+@onready var parent = get_parent()
 @onready var selection = $Selection
-#@onready var collision = $Collision
-@onready var body = $Body
 @onready var path = $Path
 @onready var ray_cast_floor = $Path/Floor
 @onready var ray_cast_ledge = $Path/Ledge
@@ -35,7 +35,7 @@ var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var timeout_path_check = 100
 @export var timeout_move_check = 100
 @export var timeout_direction_change = 400
-@export var bbox_size = Vector3(1.1, 2.1, 1.1)
+@export var bbox_size = Vector3(1.0, 2.0, 1.0)
 
 # gameplay parameters
 var selected = false
@@ -62,17 +62,17 @@ var bbox_area: AABB
 func _ready():
 	deselect()
 	add_to_group("units")
-	#remove_child(collision_mesh)
-	#get_tree().get_root().add_child(collision_mesh)
 	world.register_unit(self)
-	bbox_point = AABB(self.global_transform.origin, Vector3(1, 1, 1))
+	bbox_point = AABB(parent.global_transform.origin, Vector3(1, 1, 1))
 	bbox_normal = self.get_bbox(1)
 	bbox_large = self.get_bbox(3)
 	bbox_area = self.get_bbox(12)
 
+
 func _process(_delta):
 	if !current_action: return
 	near_target_timer()
+
 
 func _physics_process(delta):
 	call_deferred("check_in_level")
@@ -117,7 +117,7 @@ func _physics_process(delta):
 func is_on_floor():
 	if falling: return false
 	if ray_cast_floor.is_colliding(): return true
-	if self.global_transform.origin.z >= 0: return true
+	if parent.global_transform.origin.z >= bbox_normal.size.y * 0.5: return true
 	return false
 
 
@@ -140,19 +140,19 @@ func move_and_slide():
 		var ox = to_global(velocity * 0.1).x
 		var oz = to_global(velocity * 0.1).z
 		var tween = create_tween()
-		bbox_normal.position = global_transform.origin
-		tween.parallel().tween_property(self, "global_transform:origin:x", ox, speed)
-		tween.parallel().tween_property(self, "global_transform:origin:y", bbox_normal.size.y * 0.5 + 0.4, speed)
-		tween.parallel().tween_property(self, "global_transform:origin:z", oz, speed)
+		bbox_normal.position = parent.global_transform.origin
+		tween.parallel().tween_property(parent, "global_transform:origin:x", ox, speed)
+		tween.parallel().tween_property(parent, "global_transform:origin:y", bbox_normal.size.y  * 0.5, speed)
+		tween.parallel().tween_property(parent, "global_transform:origin:z", oz, speed)
 
 
 func check_in_level():
-	if self.global_transform.origin.y < -5.0:
-		print('warning - unit fell out of level at ' + str(self.global_transform.origin))
+	if parent.global_transform.origin.y < -5.0:
+		print('warning - unit fell out of level at ' + str(parent.global_transform.origin))
 		call_deferred("free")
 
 func get_bbox(size = 1):
-	var aabb := AABB(self.global_transform.origin, bbox_size * size)
+	var aabb := AABB(parent.global_transform.origin, bbox_size * size)
 	return aabb
 
 func find_units_nearby():
@@ -210,14 +210,13 @@ func resume_path_nodes():
 	ray_cast_forward.enabled = true
 	ray_cast_left.enabled = true
 	ray_cast_right.enabled = true
-
+	
 
 var facing = false
 var turning = false
 
 func face_target():
 	if facing: return
-	#if random(): look_target = path_target
 	turning = true
 	var origin = self.global_transform.origin
 	var target = origin - look_target
@@ -226,9 +225,7 @@ func face_target():
 	var tween = create_tween()
 	var speed = 0.1
 	tween.parallel().tween_property(body, "quaternion", qtn, speed)
-	#tween.parallel().tween_property(collision_shape, "quaternion", qtn, speed)
 	tween.parallel().tween_property(path, "quaternion", qtn, speed)
-	#await tween.finished
 	facing = true
 	turning = false
 
@@ -475,7 +472,7 @@ func can_path():
 
 
 func next_move_dir():
-	if await found_path_to_target():
+	if found_path_to_target():
 		return Vector3.ZERO
 	
 	if !path_target:

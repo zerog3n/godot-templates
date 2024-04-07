@@ -39,9 +39,20 @@ func _ready():
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME # debugging
 	var refresh_rate = DisplayServer.screen_get_refresh_rate()
 	if refresh_rate < 0.0: refresh_rate = 60.0
+	
 	Engine.max_fps = int(refresh_rate)
 	Engine.physics_ticks_per_second = int(refresh_rate)
+	
+	if refresh_rate >= 144:
+		ProjectSettings.set_setting("lights_and_shadows/directional_shadow/soft_shadow_filter_quality", 5)
+		ProjectSettings.set_setting("lights_and_shadows/positional_shadow/soft_shadow_filter_quality", 5)
+	
+	if refresh_rate <= 60:
+		ProjectSettings.set_setting("lights_and_shadows/directional_shadow/soft_shadow_filter_quality", 0)
+		ProjectSettings.set_setting("lights_and_shadows/positional_shadow/soft_shadow_filter_quality", 0)
+	
 	camera_origin = camera.position
+	print('camera initialised: refresh_rate = ' + str(refresh_rate))
 
 
 func _process(_delta):
@@ -107,10 +118,11 @@ func select_units(pos, start):
 		single_select = false
 		multi_select = true
 	
-	
 	if new_selected_units.size() != 0:
 		for unit in new_selected_units:
-			if unit and "select" in unit: unit.select()
+			if unit and "select" in unit:
+				#print(unit, ' selected.')
+				unit.select()
 		selected_units = new_selected_units
 
 func deselect_all():
@@ -119,21 +131,29 @@ func deselect_all():
 	selected_units = []
 
 func _physics_process(delta):
+	var input_alternate = Input.is_action_pressed("alternative_action")
+	
 	# camera zoom
 	var input_zoom_in = Input.is_action_just_released("camera_zoom_in")
 	var input_zoom_out = Input.is_action_just_released("camera_zoom_out")
-	if input_zoom_in: zoom(-2)
-	if input_zoom_out: 	zoom(2)
+	var zoom_amount = 4
+	if input_alternate: zoom_amount = 8
+	if input_zoom_in:
+		zoom(-zoom_amount)
+	if input_zoom_out: 
+		zoom(zoom_amount)
 	
 	# camera movement
 	var input_dir = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	var speed = SPEED * camera_speed
+	var multiplier = 2
+	if input_alternate: multiplier = 4
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		last_move_direction = direction
 		move_acceleration = min(move_acceleration + 0.1, 0.25)
-		camera.global_position.x += direction.x * speed * move_acceleration
-		camera.global_position.z += direction.z * speed * move_acceleration
+		camera.global_position.x += direction.x * speed * move_acceleration * multiplier
+		camera.global_position.z += direction.z * speed * move_acceleration * multiplier
 		move_decay = 0.25
 	else:
 		if move_decay > 0:
@@ -174,8 +194,10 @@ func get_units_in_selection(top_left, bot_right):
 		bot_right.y = tmp
 	var box = Rect2(top_left, bot_right - top_left)
 	var box_selected_units = []
-	for unit in get_tree().get_nodes_in_group("units"):
+	var units = get_tree().get_nodes_in_group("units")
+	for unit in units:
 		if box.has_point(camera.unproject_position(unit.global_transform.origin)):
+			#box(unit.global_transform.origin)
 			box_selected_units.append(unit)
 	return box_selected_units
 
@@ -197,12 +219,12 @@ func line(pos1: Vector3, pos2: Vector3, lifetime = 0.2, color = Color.WHITE_SMOK
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()
 	var material := ORMMaterial3D.new()
-	mesh_instance.mesh = immediate_mesh
-	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	immediate_mesh.surface_add_vertex(pos1)
 	immediate_mesh.surface_add_vertex(pos2)
 	immediate_mesh.surface_end()
+	mesh_instance.mesh = immediate_mesh
+	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = color
 	get_tree().get_root().add_child(mesh_instance)
@@ -222,6 +244,23 @@ func point(pos: Vector3, lifetime = 0.2, radius = 0.05, color = Color.WHITE_SMOK
 	material.albedo_color = color
 	get_tree().get_root().add_child(mesh_instance)
 	return await mesh_cleanup(mesh_instance, lifetime)
+
+func box(pos: Vector3, size = Vector3(1,1,1), lifetime = 0.6, color = Color.CYAN, transparency = 0.3):
+	var mesh_instance := MeshInstance3D.new()
+	var box_mesh := BoxMesh.new()
+	var material := ORMMaterial3D.new()
+	mesh_instance.mesh = box_mesh
+	box_mesh.size = size
+	box_mesh.material = material
+	#material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = color
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_color.a = transparency
+	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	mesh_instance.position = pos
+	get_tree().get_root().add_child(mesh_instance)
+	await get_tree().create_timer(lifetime).timeout
+	mesh_instance.free()
 
 func spawn_action_click(pos: Vector3, color = Color.WHITE_SMOKE):
 	var e = mouse_action.instantiate()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://7yltwdikdsl4"]
+[gd_scene load_steps=7 format=3 uid="uid://7yltwdikdsl4"]
 
+[ext_resource type="Script" path="res://unit.gd" id="1_njqi0"]
 [ext_resource type="Script" path="res://unit_ai.gd" id="1_te44x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdwsq"]
@@ -12,38 +13,31 @@ albedo_color = Color(0, 1, 0, 0.345098)
 material = SubResource("StandardMaterial3D_pdwsq")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_12d5h"]
+radial_segments = 10
+rings = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_qdqwt"]
 
 [node name="Unit" type="Node3D"]
+script = ExtResource("1_njqi0")
+
+[node name="Control" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_te44x")
 
-[node name="Selection" type="MeshInstance3D" parent="."]
-process_mode = 4
-transform = Transform3D(2.04, 0, 0, 0, 0.0431113, 0, 0, 0, 1.92, 0, -0.9, 0)
+[node name="Selection" type="MeshInstance3D" parent="Control"]
+transform = Transform3D(2.04, 0, 0, 0, 0.0431113, 0, 0, 0, 1.92, 0, -1, 0)
 layers = 2
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_lyunr")
 
-[node name="Body" type="Node3D" parent="."]
-process_mode = 4
+[node name="Path" type="Node3D" parent="Control"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
-mesh = SubResource("CapsuleMesh_12d5h")
-skeleton = NodePath("../..")
+[node name="Floor" type="RayCast3D" parent="Control/Path"]
+target_position = Vector3(0, -1.2, 0)
+hit_back_faces = false
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(0.534069, 0, 0, 0, 0.542865, 0, 0, 0, 0.874327, 0, 0, -0.535965)
-mesh = SubResource("BoxMesh_qdqwt")
-skeleton = NodePath("../..")
-
-[node name="Path" type="Node3D" parent="."]
-
-[node name="Floor" type="RayCast3D" parent="Path"]
-target_position = Vector3(0, -2, 0)
-
-[node name="Ledge" type="RayCast3D" parent="Path"]
+[node name="Ledge" type="RayCast3D" parent="Control/Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -51,7 +45,7 @@ target_position = Vector3(0, -1.6, -1.6)
 collision_mask = 17
 hit_back_faces = false
 
-[node name="Left" type="RayCast3D" parent="Path"]
+[node name="Left" type="RayCast3D" parent="Control/Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -59,7 +53,7 @@ target_position = Vector3(-1.6, 0, -1.6)
 collision_mask = 17
 hit_back_faces = false
 
-[node name="Right" type="RayCast3D" parent="Path"]
+[node name="Right" type="RayCast3D" parent="Control/Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -67,7 +61,7 @@ target_position = Vector3(1.6, 0, -1.6)
 collision_mask = 17
 hit_back_faces = false
 
-[node name="Forward" type="RayCast3D" parent="Path"]
+[node name="Forward" type="RayCast3D" parent="Control/Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -75,14 +69,26 @@ target_position = Vector3(0, 0, -1.6)
 collision_mask = 17
 hit_back_faces = false
 
-[node name="Points" type="Node3D" parent="Path"]
+[node name="Points" type="Node3D" parent="Control/Path"]
 process_mode = 4
 
-[node name="Left" type="Node3D" parent="Path/Points"]
+[node name="Left" type="Node3D" parent="Control/Path/Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
-[node name="Right" type="Node3D" parent="Path/Points"]
+[node name="Right" type="Node3D" parent="Control/Path/Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 
-[node name="Forward" type="Node3D" parent="Path/Points"]
+[node name="Forward" type="Node3D" parent="Control/Path/Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Body" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("CapsuleMesh_12d5h")
+skeleton = NodePath("../../Control")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.534069, 0, 0, 0, 0.542865, 0, 0, 0, 0.874327, 0, 0, -0.535965)
+mesh = SubResource("BoxMesh_qdqwt")
+skeleton = NodePath("../../Control")
