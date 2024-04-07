@@ -1,0 +1,2805 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7ksr0ftbkm8w"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_veslm"]
+[ext_resource type="PackedScene" uid="uid://biri1gf1ccp7w" path="res://controller.tscn" id="2_sajxe"]
+[ext_resource type="PackedScene" uid="uid://7yltwdikdsl4" path="res://unit.tscn" id="3_1bf6v"]
+
+[sub_resource type="Environment" id="Environment_fv20q"]
+sdfgi_use_occlusion = true
+glow_enabled = true
+fog_light_color = Color(0.0705882, 0.0823529, 0.0980392, 1)
+volumetric_fog_albedo = Color(0.141176, 0.141176, 0.141176, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dlx3"]
+albedo_color = Color(0.14902, 0.396078, 0.239216, 1)
+ao_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n48xs"]
+albedo_color = Color(0.59, 0.48262, 0.3599, 1)
+ao_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akr4q"]
+albedo_color = Color(0.59, 0.48262, 0.3599, 1)
+ao_enabled = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_veslm")
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fv20q")
+
+[node name="Controller" parent="." instance=ExtResource("2_sajxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 48, -8)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.598297, 0.744314, -0.29671, 0, 0.370298, 0.928913, 0.801275, -0.555766, 0.221548, -2.02041, 9.60129, 5.40117)
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_opacity = 0.34
+shadow_blur = 5.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31695, 1.87018, -4.80446)
+visible = false
+light_color = Color(0.933333, 0.937255, 0.741176, 1)
+light_energy = 4.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38827, 0, -4.9927)
+visible = false
+
+[node name="Objects" type="Node3D" parent="."]
+process_mode = 4
+
+[node name="Section1" type="Node3D" parent="Objects"]
+
+[node name="Floor" type="CSGPolygon3D" parent="Objects/Section1"]
+transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
+material_override = SubResource("StandardMaterial3D_0dlx3")
+calculate_tangents = false
+use_collision = true
+collision_layer = 17
+collision_mask = 17
+
+[node name="PillarsGroup1" type="Node3D" parent="Objects/Section1"]
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup1"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup2" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup2"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup3" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup3"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup4" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup4"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup5" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup5"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup6" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup6"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup7" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup7"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup8" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup8"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup9" type="Node3D" parent="Objects/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section1/PillarsGroup9"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Section2" type="Node3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100.104)
+
+[node name="Floor" type="CSGPolygon3D" parent="Objects/Section2"]
+transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
+material_override = SubResource("StandardMaterial3D_0dlx3")
+calculate_tangents = false
+use_collision = true
+collision_layer = 17
+collision_mask = 17
+
+[node name="PillarsGroup1" type="Node3D" parent="Objects/Section2"]
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup2" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup2"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup3" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup3"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup4" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup4"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup5" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup5"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup6" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup6"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup7" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup7"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup8" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup8"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup9" type="Node3D" parent="Objects/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section2/PillarsGroup9"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Section3" type="Node3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.853, 0, 0)
+
+[node name="Floor" type="CSGPolygon3D" parent="Objects/Section3"]
+transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
+material_override = SubResource("StandardMaterial3D_0dlx3")
+calculate_tangents = false
+use_collision = true
+collision_layer = 17
+collision_mask = 17
+
+[node name="PillarsGroup1" type="Node3D" parent="Objects/Section3"]
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup2" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup2"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup3" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup3"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup4" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup4"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup5" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup5"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup6" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup6"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup7" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup7"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup8" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup8"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup9" type="Node3D" parent="Objects/Section3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section3/PillarsGroup9"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Section4" type="Node3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.853, 0, -100.104)
+
+[node name="Floor" type="CSGPolygon3D" parent="Objects/Section4"]
+transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
+material_override = SubResource("StandardMaterial3D_0dlx3")
+calculate_tangents = false
+use_collision = true
+collision_layer = 17
+collision_mask = 17
+
+[node name="PillarsGroup1" type="Node3D" parent="Objects/Section4"]
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup1"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup2" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup2"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup3" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, 0)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup3"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup4" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup4"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup5" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup5"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup6" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -32.4411)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup6"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup7" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup7"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup8" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.6578, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup8"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="PillarsGroup9" type="Node3D" parent="Objects/Section4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.1851, 0, -65.0936)
+
+[node name="Pillar1" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.60831, 0, 1.09927, 0, 7.8773, 0, -1.1708, 0, 2.44896, 1.11172, 0.689719, -8.54191)
+material_override = SubResource("StandardMaterial3D_n48xs")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar2" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.56417, 0, 1.18731, 0, 7.8773, 0, -1.26456, 0, 2.40751, 8.62302, 0.69921, -2.27121)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar3" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(1.30118, 0, 2.39025, 0, 7.8773, 0, -2.54578, 0, 1.22168, 19.1, 0.69921, -14.5613)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar4" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.32892, 0, 1.55707, 0, 7.8773, 0, -1.65838, 0, 2.18663, 9.05549, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar5" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.6524, 0, -1.00197, 0, 7.8773, 0, 1.06718, 0, 2.49035, 29.9635, 0.69921, -19.9678)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar6" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 29.9635, 0.69921, -5.939)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar7" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.82469, 0, 0.414841, 0, 7.8773, 0, -0.441826, 0, 2.65212, 39.6404, 0.69921, -1.838)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar8" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.38215, 0, -1.48437, 0, 7.8773, 0, 1.58096, 0, 2.23662, 39.6404, 0.69921, -14.0274)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar9" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 39.6404, 0.69921, -27.24)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar10" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(0.88733, 0, -2.5518, 0, 7.8773, 0, 2.71785, 0, 0.833127, 18.2225, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar11" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.64768, 0, -1.01291, 0, 7.8773, 0, 1.07883, 0, 2.48592, 1.1046, 0.69921, -28.0442)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Pillar12" type="CSGBox3D" parent="Objects/Section4/PillarsGroup9"]
+transform = Transform3D(2.8474, 0, 0.241942, 0, 7.8773, 0, -0.257677, 0, 2.67344, 19.5812, 0.69921, -3.85001)
+material_override = SubResource("StandardMaterial3D_akr4q")
+use_collision = true
+collision_mask = 0
+
+[node name="Unit1" parent="." instance=ExtResource("3_1bf6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.744, 14.8886, -35.672)
+
+[node name="Unit2" parent="." instance=ExtResource("3_1bf6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.7, 14.8886, -35.672)

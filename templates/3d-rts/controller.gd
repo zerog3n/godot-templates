@@ -34,52 +34,67 @@ var selected_units = []
 var single_select = false
 var multi_select = false
 
+
 func _ready():
+	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME # debugging
+	var refresh_rate = DisplayServer.screen_get_refresh_rate()
+	if refresh_rate < 0.0: refresh_rate = 60.0
+	Engine.max_fps = int(refresh_rate)
+	Engine.physics_ticks_per_second = int(refresh_rate)
 	camera_origin = camera.position
 
+
 func _process(_delta):
-	# update the current mouse position
-	mouse_position = get_viewport().get_mouse_position()
+	if Input.is_action_just_pressed("cancel_action"):
+		cancel_actions()
 	
 	if Input.is_action_just_pressed("secondary_action"):
-		var pos = get_position_under_mouse()
+		var pos = get_mouse_ground_position()
 		if pos:
-			spawn_action_click(pos, Color.CYAN)
+			spawn_action_click(pos, Color('#00FF00')) # Color('#3ECFFF')
 			move_selected_units(pos)
 	
 	elif Input.is_action_just_released("primary_action"):
-		var unit = get_unit_under_mouse()
-		if unit and unit.selected: return
+		mouse_position = get_viewport().get_mouse_position()
 		unselect()
 		select_units(mouse_position, select.start_position)
 		last_click_position = null
 	
 	elif Input.is_action_just_pressed("primary_action"):
+		mouse_position = get_viewport().get_mouse_position()
 		var unit = get_unit_under_mouse()
 		if unit and unit != unit_on_hover:
-			if not unit.selected:
-				unit_on_hover = unit
+			unit_on_hover = unit
 		else: unit_on_hover = null
 		last_click_position = mouse_position
 
 func unselect():
 	if not last_click_position: return
-	var pixel_length = 16
+	if is_select_box_active(): return
+	if not unit_on_hover:
+		deselect_all()
+
+func is_select_box_active():
+	var min_side_length = 4
 	var x = select.box_size.x
 	var y = select.box_size.y
-	if x > pixel_length and y > pixel_length: return
-	if not unit_on_hover: deselect_all()
+	if x > min_side_length and y > min_side_length: return true
+	return false
+
+func cancel_actions():
+	for unit in selected_units:
+		if unit and "unset_action" in unit: unit.unset_action()
 
 func move_selected_units(pos):
 	for unit in selected_units:
-		unit.move_to(pos)
+		if unit and "move_to" in unit: unit.move_to(pos)
 
 func select_units(pos, start):
 	var new_selected_units = []
 	var in_selection = get_units_in_selection(start, pos)
 	
 	# single unit selection
-	if unit_on_hover != null and !unit_on_hover.selected:
+	if unit_on_hover != null and !is_select_box_active():
 		deselect_all()
 		new_selected_units.append(unit_on_hover)
 		single_select = true
@@ -94,37 +109,36 @@ func select_units(pos, start):
 	
 	
 	if new_selected_units.size() != 0:
-		for unit in new_selected_units: unit.select()
+		for unit in new_selected_units:
+			if unit and "select" in unit: unit.select()
 		selected_units = new_selected_units
 
 func deselect_all():
 	for unit in selected_units:
-		unit.deselect()
+		if "deselect" in unit: unit.deselect()
 	selected_units = []
 
 func _physics_process(delta):
-	# inputs
-	var input_dir = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
+	# camera zoom
 	var input_zoom_in = Input.is_action_just_released("camera_zoom_in")
 	var input_zoom_out = Input.is_action_just_released("camera_zoom_out")
-	
-	# camera zoom
 	if input_zoom_in: zoom(-2)
 	if input_zoom_out: 	zoom(2)
 	
 	# camera movement
+	var input_dir = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	var speed = SPEED * camera_speed
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		last_move_direction = direction
 		move_acceleration = min(move_acceleration + 0.1, 0.25)
-		camera.position.x += direction.x * speed * move_acceleration
-		camera.position.z += direction.z * speed * move_acceleration
+		camera.global_position.x += direction.x * speed * move_acceleration
+		camera.global_position.z += direction.z * speed * move_acceleration
 		move_decay = 0.25
 	else:
 		if move_decay > 0:
-			camera.position.x += last_move_direction.x * speed * 0.25 * move_decay
-			camera.position.z += last_move_direction.z * speed * 0.25 * move_decay
+			camera.global_position.x += last_move_direction.x * speed * 0.25 * move_decay
+			camera.global_position.z += last_move_direction.z * speed * 0.25 * move_decay
 			move_decay = move_decay - 1 * delta
 		else:
 			last_move_direction = null
@@ -136,14 +150,17 @@ func zoom(dir: float):
 	tween.tween_property(camera, "position:y", dest.y, 0.2)
 
 func get_unit_under_mouse():
-	#var result = raycast_from_mouse(pos, 2)
-	var result = shoot_ray()
-	#if result and result.collider != unit_on_hover: point(result.position)
+	var result = shoot_ray(5)
 	if result:
-		return result.collider
+		var unit = result.collider.get_parent()
+		#print('get_unit_under_mouse: ', str(result))
+		#print('get_unit_under_mouse: ', str(result.collider))
+		#print('get_unit_under_mouse: ', str(unit))
+		return unit
 
-func get_position_under_mouse():
+func get_mouse_ground_position():
 	var result = shoot_ray(1)
+	#print('get_mouse_ground_position: ', str(result))
 	if result: return result.position
 
 func get_units_in_selection(top_left, bot_right):
@@ -162,12 +179,12 @@ func get_units_in_selection(top_left, bot_right):
 			box_selected_units.append(unit)
 	return box_selected_units
 
-func shoot_ray(mask = 2):
+func shoot_ray(mask = 5):
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 50
+	var ray_length = 1000
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
-	#line(from, to)
+	#line(from, to, 15)
 	var space = get_world_3d().direct_space_state
 	var params = PhysicsRayQueryParameters3D.new()
 	params.from = from
@@ -175,18 +192,6 @@ func shoot_ray(mask = 2):
 	params.exclude = []
 	params.collision_mask = mask
 	return space.intersect_ray(params)
-
-func raycast_from_mouse(pos, collision_mask):
-	var ray_start = camera.project_ray_origin(pos)
-	var ray_end = ray_start + camera.project_ray_normal(pos) * 50
-	var space_state = get_world_3d().direct_space_state
-	line(ray_start, ray_end)
-	var params = PhysicsRayQueryParameters3D.new()
-	params.from = ray_start
-	params.to = ray_end
-	params.exclude = []
-	params.collision_mask = collision_mask
-	return space_state.intersect_ray(params)
 
 func line(pos1: Vector3, pos2: Vector3, lifetime = 0.2, color = Color.WHITE_SMOKE):
 	var mesh_instance := MeshInstance3D.new()

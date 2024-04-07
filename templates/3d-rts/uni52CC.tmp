@@ -16,73 +16,77 @@ material = SubResource("StandardMaterial3D_pdwsq")
 [sub_resource type="BoxMesh" id="BoxMesh_qdqwt"]
 
 [node name="Unit" type="Node3D"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_te44x")
 
 [node name="Selection" type="MeshInstance3D" parent="."]
 process_mode = 4
-transform = Transform3D(2.04, 0, 0, 0, 0.0431113, 0, 0, 0, 1.92, 0, -0.9, 0)
+transform = Transform3D(2.04, 0, 0, 0, 0.0431113, 0, 0, 0, 1.92, 0, -0.960615, 0)
+visible = false
 layers = 2
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_lyunr")
 
 [node name="Body" type="Node3D" parent="."]
-process_mode = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+process_mode = 4
 mesh = SubResource("CapsuleMesh_12d5h")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+process_mode = 4
 transform = Transform3D(0.534069, 0, 0, 0, 0.542865, 0, 0, 0, 0.874327, 0, 0, -0.535965)
 mesh = SubResource("BoxMesh_qdqwt")
 skeleton = NodePath("../..")
 
 [node name="Path" type="Node3D" parent="."]
 
-[node name="Floor" type="RayCast3D" parent="Path"]
-target_position = Vector3(0, -2, 0)
-
 [node name="Ledge" type="RayCast3D" parent="Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
-target_position = Vector3(0, -1.6, -1.6)
-collision_mask = 17
+target_position = Vector3(0, -2, -3)
+collision_mask = 19
 hit_back_faces = false
 
 [node name="Left" type="RayCast3D" parent="Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
-target_position = Vector3(-1.6, 0, -1.6)
-collision_mask = 17
+target_position = Vector3(-1, 0, -1)
+collision_mask = 19
 hit_back_faces = false
 
 [node name="Right" type="RayCast3D" parent="Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
-target_position = Vector3(1.6, 0, -1.6)
-collision_mask = 17
+target_position = Vector3(1, 0, -1)
+collision_mask = 19
 hit_back_faces = false
 
 [node name="Forward" type="RayCast3D" parent="Path"]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
-target_position = Vector3(0, 0, -1.6)
-collision_mask = 17
+target_position = Vector3(0, 0, -1)
+collision_mask = 19
 hit_back_faces = false
 
 [node name="Points" type="Node3D" parent="Path"]
-process_mode = 4
 
 [node name="Left" type="Node3D" parent="Path/Points"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
 [node name="Right" type="Node3D" parent="Path/Points"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 
 [node name="Forward" type="Node3D" parent="Path/Points"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

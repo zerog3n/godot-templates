@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://biri1gf1ccp7w"]
+[gd_scene load_steps=4 format=3 uid="uid://biri1gf1ccp7w"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_u4yeg"]
 [ext_resource type="Script" path="res://select_box.gd" id="2_j5yi7"]
+[ext_resource type="Script" path="res://fps.gd" id="3_8tf1q"]
 
 [node name="Controller" type="Node3D"]
 script = ExtResource("1_u4yeg")
@@ -20,3 +21,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 3
 script = ExtResource("2_j5yi7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="FPS" type="Label" parent="Control/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_8tf1q")
