@@ -18,6 +18,7 @@ const debug_path = false
 @onready var left_position = $Path/Points/Left
 @onready var right_position = $Path/Points/Right
 @onready var forward_position = $Path/Points/Forward
+@onready var agent = get_node('NavigationAgent3D') as NavigationAgent3D
 
 # game settings
 var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -52,6 +53,7 @@ var moving = false
 var falling = false
 var attacking = false
 var units_in_area = []
+var path_vectors = []
 
 # spatial parameters
 var bbox_point: AABB
@@ -67,6 +69,7 @@ func _ready():
 	bbox_normal = self.get_bbox(1)
 	bbox_large = self.get_bbox(3)
 	bbox_area = self.get_bbox(12)
+	#call_deferred("update_navigation_server")
 
 
 func _process(_delta):
@@ -144,6 +147,38 @@ func move_and_slide():
 		tween.parallel().tween_property(parent, "global_transform:origin:x", ox, speed)
 		tween.parallel().tween_property(parent, "global_transform:origin:y", bbox_normal.size.y  * 0.5, speed)
 		tween.parallel().tween_property(parent, "global_transform:origin:z", oz, speed)
+		get_navigation_path()
+
+
+func update_navigation_path():
+	if !path_target: return
+	await get_tree().physics_frame
+	agent.set_target_position(path_target)
+	#var start = parent.global_transform.origin
+	#var end = path_target
+	#var map: RID = NavigationServer3D.get_maps()[0]
+	#print(map)
+	#await get_tree().physics_frame
+	#var nav_path = NavigationServer3D.map_get_path(map, start, end, false)
+	#print('navigation path: ', nav_path)
+
+
+func get_navigation_path():
+	if !path_target: return
+	if !agent.target_position:
+		await update_navigation_path()
+		return
+	
+	if path_vectors.size(): return
+	
+	print(self, ' updating path.')
+	var p = agent.get_current_navigation_path()
+	path_vectors = p
+	
+	var pos: Vector3 = agent.get_next_path_position()
+	#print('agent finished: ', agent.is_navigation_finished())
+	#print('agent path: ', p)
+	#print('agent pos: ', pos)
 
 
 func check_in_level():
@@ -205,6 +240,7 @@ func pause_path_nodes():
 	ray_cast_forward.enabled = false
 	ray_cast_left.enabled = false
 	ray_cast_right.enabled = false
+	
 func resume_path_nodes():
 	ray_cast_ledge.enabled = true
 	ray_cast_forward.enabled = true

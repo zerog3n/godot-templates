@@ -192,11 +192,11 @@ func get_units_in_selection(top_left, bot_right):
 		var tmp = top_left.y
 		top_left.y = bot_right.y
 		bot_right.y = tmp
-	var box = Rect2(top_left, bot_right - top_left)
+	var rect = Rect2(top_left, bot_right - top_left)
 	var box_selected_units = []
 	var units = get_tree().get_nodes_in_group("units")
 	for unit in units:
-		if box.has_point(camera.unproject_position(unit.global_transform.origin)):
+		if rect.has_point(camera.unproject_position(unit.global_transform.origin)):
 			#box(unit.global_transform.origin)
 			box_selected_units.append(unit)
 	return box_selected_units

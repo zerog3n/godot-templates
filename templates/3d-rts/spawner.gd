@@ -20,11 +20,11 @@ func _process(_delta):
 	var now = Time.get_ticks_msec()
 	if now > next_spawn_time:
 		next_spawn_time = now + delay_secs * 1000
-		spawn()
+		await spawn()
 
 func spawn():
 	var e = resource.instantiate()
 	e.position = self.global_position
 	get_tree().get_root().add_child(e)
-	e.control.move_to(target_node.global_position)
+	await e.control.move_to(target_node.global_position)
 	spawned += 1

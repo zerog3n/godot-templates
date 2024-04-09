@@ -12,7 +12,7 @@ volumetric_fog_albedo = Color(0.141176, 0.141176, 0.141176, 1)
 adjustment_enabled = true
 adjustment_brightness = 1.15
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dlx3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsjnx"]
 albedo_color = Color(0.14902, 0.396078, 0.239216, 1)
 ao_enabled = true
 
@@ -59,15 +59,15 @@ visible = false
 [node name="Objects" type="Node3D" parent="."]
 process_mode = 4
 
-[node name="Section1" type="Node3D" parent="Objects"]
-
-[node name="Floor" type="CSGPolygon3D" parent="Objects/Section1"]
-transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
-material_override = SubResource("StandardMaterial3D_0dlx3")
+[node name="Floor" type="CSGPolygon3D" parent="Objects"]
+transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 200, -5.445, 0, 3.323)
+material_override = SubResource("StandardMaterial3D_xsjnx")
 calculate_tangents = false
 use_collision = true
 collision_layer = 17
 collision_mask = 17
+
+[node name="Section1" type="Node3D" parent="Objects"]
 
 [node name="PillarsGroup1" type="Node3D" parent="Objects/Section1"]
 
@@ -746,14 +746,6 @@ collision_mask = 0
 [node name="Section2" type="Node3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100.104)
 
-[node name="Floor" type="CSGPolygon3D" parent="Objects/Section2"]
-transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
-material_override = SubResource("StandardMaterial3D_0dlx3")
-calculate_tangents = false
-use_collision = true
-collision_layer = 17
-collision_mask = 17
-
 [node name="PillarsGroup1" type="Node3D" parent="Objects/Section2"]
 
 [node name="Pillar1" type="CSGBox3D" parent="Objects/Section2/PillarsGroup1"]
@@ -1431,14 +1423,6 @@ collision_mask = 0
 [node name="Section3" type="Node3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.853, 0, 0)
 
-[node name="Floor" type="CSGPolygon3D" parent="Objects/Section3"]
-transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
-material_override = SubResource("StandardMaterial3D_0dlx3")
-calculate_tangents = false
-use_collision = true
-collision_layer = 17
-collision_mask = 17
-
 [node name="PillarsGroup1" type="Node3D" parent="Objects/Section3"]
 
 [node name="Pillar1" type="CSGBox3D" parent="Objects/Section3/PillarsGroup1"]
@@ -2115,14 +2099,6 @@ collision_mask = 0
 
 [node name="Section4" type="Node3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.853, 0, -100.104)
-
-[node name="Floor" type="CSGPolygon3D" parent="Objects/Section4"]
-transform = Transform3D(148.85, 0, 0, 0, 0.400496, 0, 0, 0, 100.124, -5.44505, 0.0131216, 3.32276)
-material_override = SubResource("StandardMaterial3D_0dlx3")
-calculate_tangents = false
-use_collision = true
-collision_layer = 17
-collision_mask = 17
 
 [node name="PillarsGroup1" type="Node3D" parent="Objects/Section4"]
 
