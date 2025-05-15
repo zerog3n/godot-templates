@@ -33,8 +33,8 @@ var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var timeout_near_target = 2000
 @export var timeout_path_duration = 4000
 @export var timeout_max_duration = 90000 # 1.5 mins
-@export var timeout_path_check = 100
-@export var timeout_move_check = 100
+@export var timeout_path_check = 400
+@export var timeout_move_check = 400
 @export var timeout_direction_change = 400
 @export var bbox_size = Vector3(1.0, 2.0, 1.0)
 
@@ -76,8 +76,14 @@ func _process(_delta):
 	if !current_action: return
 	near_target_timer()
 
-
+var next_physics_process_time = 0
 func _physics_process(delta):
+	var now = Time.get_ticks_msec()
+	if now > next_physics_process_time:
+		next_physics_process_time = now + 150
+	else:
+		return
+	
 	call_deferred("check_in_level")
 	#call_deferred("check_collisions")
 	
@@ -171,7 +177,7 @@ func get_navigation_path():
 	
 	if path_vectors.size(): return
 	
-	print(self, ' updating path.')
+	if debug: print(self, ' updating path.')
 	var p = agent.get_current_navigation_path()
 	path_vectors = p
 	
@@ -342,9 +348,9 @@ func is_near_target():
 func near_target_timer():
 	var now = Time.get_ticks_msec()
 	if now > near_target_time:
-		near_target_time = now + 1
+		near_target_time = now + 100
 		if dist_to_target() < min_distance_to_target:
-			near_target_ms += 1
+			near_target_ms += 100
 		else: near_target_ms = 0
 
 
